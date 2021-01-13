@@ -3,14 +3,13 @@
 
 #include "menu/item/MenuItem.h"
 
-enum item_type{
-    SUB_ITEM, END_ITEM
-};
+
 
 class Menu{
 private:
-    IMenuItem* first;
-    IMenuItem* current;
+    MenuItem* first;
+    MenuItem* current;
+    MenuItem* parent;
 
 
 

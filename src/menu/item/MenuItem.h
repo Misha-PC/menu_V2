@@ -12,18 +12,33 @@
 
 #include "Arduino.h"
 
-class IMenuItem{
-public:
-    String     name;
-    IMenuItem *next;
-    IMenuItem *previous;
-    IMenuItem *parrent;
-
+enum item_type{
+    SUB_ITEM, END_ITEM
 };
 
+class MenuItem{
+public:
+    item_type type;
+    String    name;
+    MenuItem *previous;
+    MenuItem *parrent;
+
+    MenuItem *next;
+    
+    MenuItem *onwards;
+    void *(f);
+
+    MenuItem(item_type type, String name, MenuItem *previous = NULL, MenuItem *parrent = NULL){ 
+        this->name     = name;
+        this->type     = type;
+        this->parrent  = parrent;
+        this->previous = previous;    
+    }
+};
+
+/*
 class MenuSubItem: public IMenuItem{
 public:
-    IMenuItem *onwards;
 
     MenuSubItem(String n, IMenuItem *p){ 
         this->name = n;
@@ -33,7 +48,6 @@ public:
 
 class MenuEndItem: public IMenuItem{
 public:
-    void *(f);
 
     MenuEndItem(String n, IMenuItem *p){ 
         this->name = n;
@@ -41,7 +55,7 @@ public:
     }
 };
 
-
+*/
 
 
 #endif // MENU_ITEM_H
